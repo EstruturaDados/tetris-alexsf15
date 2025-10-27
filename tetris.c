@@ -52,7 +52,7 @@ int filaCheia(FilaCircular *fila) {
 
 void enfileirar(FilaCircular *fila, Peca p) {
     if (filaCheia(fila)) {
-        printf("⚠️  A fila está cheia! Não é possível adicionar mais peças.\n");
+        printf("A fila está cheia! Não é possível adicionar mais peças.\n");
         return;
     }
     fila->tras = (fila->tras + 1) % TAM_FILA;
@@ -63,7 +63,7 @@ void enfileirar(FilaCircular *fila, Peca p) {
 Peca desenfileirar(FilaCircular *fila) {
     Peca pecaVazia = {0, " "};
     if (filaVazia(fila)) {
-        printf("⚠️  A fila está vazia!\n");
+        printf("A fila está vazia!\n");
         return pecaVazia;
     }
     Peca removida = fila->pecas[fila->frente];
@@ -74,7 +74,7 @@ Peca desenfileirar(FilaCircular *fila) {
 
 // ======== EXIBIÇÃO ========
 void exibirFila(FilaCircular *fila) {
-    printf("\n📦 Estado atual da Fila de Peças (%d/%d):\n", fila->tamanho, TAM_FILA);
+    printf("\nEstado atual da Fila de Peças (%d/%d):\n", fila->tamanho, TAM_FILA);
     printf("----------------------------------\n");
 
     int index = fila->frente;
@@ -91,7 +91,7 @@ void exibirFila(FilaCircular *fila) {
 
 // ======== MENU ========
 void menu() {
-    printf("\n===== 🎮 TETRIS STACK - Nível Novato =====\n");
+    printf("\n===== TETRIS STACK - Nível Novato =====\n");
     printf("1 - Jogar (remover peça da frente)\n");
     printf("2 - Inserir nova peça\n");
     printf("3 - Visualizar fila\n");
@@ -115,22 +115,22 @@ int main() {
             case 1: {
                 Peca jogada = desenfileirar(&fila);
                 if (strcmp(jogada.nome, " ") != 0) {
-                    printf("\n🎮 Peça jogada: ID=%d | Tipo=%s\n", jogada.id, jogada.nome);
+                    printf("\nPeça jogada: ID=%d | Tipo=%s\n", jogada.id, jogada.nome);
                     // Após jogar, gerar e adicionar nova peça automaticamente
                     Peca nova = gerarPeca();
                     enfileirar(&fila, nova);
-                    printf("🆕 Nova peça gerada e adicionada à fila!\n");
+                    printf("Nova peça gerada e adicionada à fila!\n");
                 }
                 break;
             }
 
             case 2: {
                 if (filaCheia(&fila)) {
-                    printf("⚠️  A fila está cheia! Jogue uma peça antes.\n");
+                    printf("A fila está cheia! Jogue uma peça antes.\n");
                 } else {
                     Peca nova = gerarPeca();
                     enfileirar(&fila, nova);
-                    printf("✅ Nova peça inserida: ID=%d | Tipo=%s\n", nova.id, nova.nome);
+                    printf("Nova peça inserida: ID=%d | Tipo=%s\n", nova.id, nova.nome);
                 }
                 break;
             }
@@ -140,11 +140,11 @@ int main() {
                 break;
 
             case 0:
-                printf("\n👋 Saindo do jogo... Até a próxima!\n");
+                printf("\nSaindo do jogo... Até a próxima!\n");
                 break;
 
             default:
-                printf("❌ Opção inválida! Tente novamente.\n");
+                printf("Opção inválida! Tente novamente.\n");
         }
 
     } while (opcao != 0);
